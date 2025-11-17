@@ -1,6 +1,7 @@
 package com.luv2code.books.controller;
 
 import com.luv2code.books.entity.Book;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -11,6 +12,10 @@ public class BookController {
 
     private final List<Book> books = new ArrayList<>();
 
+    public BookController(){
+        initializeBooks();
+    }
+
     private void initializeBooks(){
         books.addAll(List.of(
                 new Book("Title One", "Author One", "Science"),
@@ -20,6 +25,11 @@ public class BookController {
                 new Book("Title Five", "Author Five", "Math"),
                 new Book("Title Six", "Author Six", "Math")
         ));
+    }
+
+    @GetMapping("/api")
+    public List<Book> getBooks(){
+        return books;
     }
 
 
